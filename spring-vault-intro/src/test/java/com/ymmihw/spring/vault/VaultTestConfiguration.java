@@ -23,7 +23,7 @@ public class VaultTestConfiguration {
 
     VaultInitializer vaultInitializer = vaultInitializer();
     VaultTemplate vaultTemplate =
-        new VaultTemplate(VaultEndpoint.from(new URI("http://localhost:8200")),
+        new VaultTemplate(VaultEndpoint.from(new URI("http://127.0.0.1:8200")),
             new TokenAuthentication(vaultInitializer.getRootToken()));
     return vaultTemplate;
 

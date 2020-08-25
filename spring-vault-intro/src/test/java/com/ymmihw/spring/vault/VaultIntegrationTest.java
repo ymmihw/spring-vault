@@ -1,7 +1,9 @@
 package com.ymmihw.spring.vault;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.net.URISyntaxException;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -12,11 +14,6 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-
-import java.net.URISyntaxException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * These tests are requiring the {@code vault} command to be installed and available in the
@@ -41,19 +38,13 @@ public class VaultIntegrationTest {
    * @throws URISyntaxException
    */
   @Test
-  @Ignore
   public void givenCredentials_whenSecureCredentials_thenCredentialsSecured()
       throws URISyntaxException {
-    try {
-      // Given
-      Credentials credentials = new Credentials("username", "password");
+    // Given
+    Credentials credentials = new Credentials("username", "password");
 
-      // When
-      credentialsService.secureCredentials(credentials);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    // When
+    credentialsService.secureCredentials(credentials);
 
   }
 
@@ -63,11 +54,13 @@ public class VaultIntegrationTest {
    * @throws URISyntaxException
    */
   @Test
-  @Ignore
   public void whenAccessCredentials_thenCredentialsRetrieved() throws URISyntaxException {
+    Credentials credentials = new Credentials("username", "password");
 
+    // When
+    credentialsService.secureCredentials(credentials);
     // Given
-    Credentials credentials = credentialsService.accessCredentials();
+    credentials = credentialsService.accessCredentials();
 
     // Then
     assertNotNull(credentials);

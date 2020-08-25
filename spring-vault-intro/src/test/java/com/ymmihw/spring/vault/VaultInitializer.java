@@ -35,11 +35,9 @@ public class VaultInitializer implements Closeable {
     return vaultProcess;
   }
 
-  @SuppressWarnings("unused")
   private void enableSecrets() {
     System.out.println("Enabling Secrets at path credentials/myapp...");
-    ProcessBuilder pb =
-        new ProcessBuilder("vault", "secrets", "enable", "-path=credentials/myapp", "kv");
+    ProcessBuilder pb = new ProcessBuilder("vault", "secrets", "enable", "-path=credentials", "kv");
     Map<String, String> map = pb.environment();
     map.put("VAULT_ADDR", "http://127.0.0.1:8200");
     try {
